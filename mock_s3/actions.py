@@ -92,6 +92,7 @@ def get_item(handler, bucket_name, item_name):
             finish = content_length - 1
         bytes_to_read = finish - start + 1
         handler.send_header('Content-Range', 'bytes %s-%s/%s' % (start, finish, content_length))
+        handler.send_header('Content-Length', '%s' % (finish - start + 1))
         handler.end_headers()
         item.io.seek(start)
         handler.wfile.write(item.io.read(bytes_to_read))
