@@ -15,15 +15,16 @@ buckets_bucket_xml = '''    <Bucket>
       <CreationDate>{bucket.creation_date}</CreationDate>
     </Bucket>'''
 
-bucket_query_xml = '''<?xml version='1.0' encoding='UTF-8'?>
-<ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01">
-  <Name>{bucket_query.bucket.name}</Name>
-  <Prefix>{bucket_query.prefix}</Prefix>
-  <Marker>{bucket_query.marker}</Marker>
-  <MaxKeys>{bucket_query.max_keys}</MaxKeys>
-  <IsTruncated>false</IsTruncated>
-  {contents}
-</ListBucketResult>'''
+bucket_query_xml = (
+    '<?xml version="1.0" encoding="UTF-8"?>'
+    '<ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01">'
+    '<Name>{bucket_query.bucket.name}</Name>'
+    '<Prefix>{bucket_query.prefix}</Prefix>'
+    '<Marker>{bucket_query.marker}</Marker>'
+    '<MaxKeys>{bucket_query.max_keys}</MaxKeys>'
+    '<IsTruncated>false</IsTruncated>'
+    '{contents}'
+    '</ListBucketResult>')
 
 bucket_query_content_xml = '''  <Contents>
     <Key>{s3_item.key}</Key>
